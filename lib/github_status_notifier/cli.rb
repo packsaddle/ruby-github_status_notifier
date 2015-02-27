@@ -14,9 +14,14 @@ module GithubStatusNotifier
     end
 
     desc 'notify', 'Notify current status to GitHub status'
-    option :keep_exit_code, type: :boolean, default: false
+    option :exit_status, type: :numeric
+    option :keep_exit_status, type: :boolean, default: false
     def notify
+      abort('keep-exit-status requires exit-status') if options[:keep_exit_status] && !options[:exit_status]
       puts 'notify!!'
+      if options[:keep_exit_status]
+        exit options[:exit_status]
+      end
     end
   end
 end
