@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+
+require "github_status_notifier"
