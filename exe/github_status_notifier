@@ -3,4 +3,3 @@
 require 'github_status_notifier'
 require 'github_status_notifier/cli'
 GithubStatusNotifier::CLI.start(ARGV)
-
