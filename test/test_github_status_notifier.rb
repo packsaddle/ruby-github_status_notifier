@@ -8,4 +8,3 @@ module GithubStatusNotifier
     end
   end
 end
-
