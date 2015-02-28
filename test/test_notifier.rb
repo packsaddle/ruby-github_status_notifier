@@ -28,6 +28,16 @@ module GithubStatusNotifier
           @notifier.decide_state('fAiluRe', nil) == Notifier::FAILURE
         end
       end
+      test 'exit status success' do
+        assert do
+          @notifier.decide_state(nil, 0) == Notifier::SUCCESS
+        end
+      end
+      test 'exit status failure' do
+        assert do
+          @notifier.decide_state(nil, 1) == Notifier::FAILURE
+        end
+      end
     end
   end
 end
