@@ -7,7 +7,7 @@ module GithubStatusNotifier
     ALLOWED_STATUS = [PENDING, SUCCESS, ERROR, FAILURE]
 
     def notify(params)
-      state = determine_state(params[:state], params[:exit_status])
+      state = decide_state(params[:state], params[:exit_status])
       repo_path = '.'
       repo = Repository.new(repo_path)
       client = Client.new(repo)
@@ -23,7 +23,7 @@ module GithubStatusNotifier
       client.create_status(ERROR, pass_params)
     end
 
-    def determine_state(state, exit_status)
+    def decide_state(state, exit_status)
       if state
         return state.downcase if ALLOWED_STATUS.include?(state.downcase)
         fail Error("state: #{state} is invalid. allowed #{ALLOWED_STATUS}")
