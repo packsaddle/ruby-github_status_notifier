@@ -20,7 +20,6 @@ module GithubStatusNotifier
     rescue StandardError => e
       logger.error e.message
       logger.error e.backtrace
-      client.create_status(ERROR, pass_params)
     end
 
     def decide_context(text)
