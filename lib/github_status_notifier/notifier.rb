@@ -6,7 +6,7 @@ module GithubStatusNotifier
     FAILURE = 'failure'
     ALLOWED_STATUS = [PENDING, SUCCESS, ERROR, FAILURE]
 
-    def notify(params)
+    def notify(params = {})
       state = decide_state(params[:state], params[:exit_status])
       repo_path = '.'
       repo = Repository.new(repo_path)
