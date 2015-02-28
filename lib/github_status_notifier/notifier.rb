@@ -30,7 +30,16 @@ module GithubStatusNotifier
     def env_target_url
       if ENV['TARGET_URL']
         ENV['TARGET_URL']
+      elsif ENV['TRAVIS']
+        build_travis_target_url
       end
+    end
+
+    def build_travis_target_url
+      host = ENV['TRAVIS_HOST'] || 'travis-ci.org'
+      slug = ENV['TRAVIS_REPO_SLUG']
+      job_id = ENV['TRAVIS_JOB_ID']
+      "https://#{host}/#{slug}/jobs/#{job_id}"
     end
 
     def decide_context(text)
