@@ -11,7 +11,7 @@ module GithubStatusNotifier
     @logger
   end
 
-  def self.logger=(logger)
-    @logger = logger
+  class << self
+    attr_writer :logger
   end
 end
