@@ -5,6 +5,7 @@ module GithubStatusNotifier
     ERROR = 'error'
     FAILURE = 'failure'
     ALLOWED_STATUS = [PENDING, SUCCESS, ERROR, FAILURE]
+    CONTEXT = 'github_status_notifier'
 
     def notify(params = {})
       state = decide_state(params[:state], params[:exit_status])
@@ -23,7 +24,7 @@ module GithubStatusNotifier
     end
 
     def decide_context(text)
-      text || 'github_status_notifier'
+      text || CONTEXT
     end
 
     def decide_state(state, exit_status)

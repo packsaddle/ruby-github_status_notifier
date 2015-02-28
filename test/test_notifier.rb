@@ -39,5 +39,18 @@ module GithubStatusNotifier
         end
       end
     end
+    sub_test_case '#decide_context' do
+      test 'no context' do
+        assert do
+          @notifier.decide_context(nil) == Notifier::CONTEXT
+        end
+      end
+      test 'with context' do
+        your_context = 'your_context'
+        assert do
+          @notifier.decide_context(your_context) == your_context
+        end
+      end
+    end
   end
 end
