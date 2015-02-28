@@ -20,7 +20,7 @@ module GithubStatusNotifier
       deliver_notification(pass_params.merge(state: ERROR))
     end
 
-    def deliver_notification(params)
+    def deliver_notification(_params)
     end
 
     def determine_state(state, exit_status)
