@@ -69,6 +69,7 @@ module GithubStatusNotifier
         deliver_notification(pass_params.merge(state: state))
       rescue StandardError => e
         logger.error e.message
+        logger.error e.backtrace
         deliver_notification(pass_params.merge(state: ERROR))
       end
 
