@@ -2,6 +2,8 @@ require 'github_status_notifier/version'
 require 'logger'
 
 module GithubStatusNotifier
+  class Error < StandardError; end
+
   def self.default_logger
     logger = Logger.new(STDERR)
     logger.progname = 'GithubStatusNotifier'
