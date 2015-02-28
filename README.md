@@ -34,6 +34,7 @@ Options:
   [--debug], [--no-debug]
   [--verbose], [--no-verbose]
   [--state=STATE]
+                                                 # Possible values: pending, success, error, failure
   [--target-url=TARGET_URL]
   [--description=DESCRIPTION]
   [--context=CONTEXT]
