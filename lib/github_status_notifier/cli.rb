@@ -16,11 +16,31 @@ module GithubStatusNotifier
     desc 'notify', 'Notify current status to GitHub status'
     option :exit_status, type: :numeric
     option :keep_exit_status, type: :boolean, default: false
+    option :debug, type: :boolean, default: false
+    option :verbose, type: :boolean, default: false
     def notify
-      abort('keep-exit-status requires exit-status') if options[:keep_exit_status] && !options[:exit_status]
-      puts 'notify!!'
+      if options[:debug]
+        logger.level = Logger::DEBUG
+      elsif options[:verbose]
+        logger.level = Logger::INFO
+      end
+      if options[:keep_exit_status] && !options[:exit_status]
+        logger.error 'keep-exit-status requires exit-status'
+        abort
+      end
+
+      logger.debug 'debug!'
+      logger.info 'info!'
+      logger.warn 'warn!'
+      logger.error 'error!'
       if options[:keep_exit_status]
         exit options[:exit_status]
+      end
+    end
+
+    no_commands do
+      def logger
+        ::GithubStatusNotifier.logger
       end
     end
   end
