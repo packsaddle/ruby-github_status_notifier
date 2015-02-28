@@ -1,4 +1,5 @@
 require 'logger'
+require 'saddler/reporter/github'
 require 'github_status_notifier/version'
 require 'github_status_notifier/notifier'
 

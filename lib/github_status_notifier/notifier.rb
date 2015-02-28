@@ -20,20 +20,24 @@ module GithubStatusNotifier
       deliver_notification(pass_params.merge(state: ERROR))
     end
 
-    def deliver_notification(_params)
+    def deliver_notification(params)
+      repo_path = '.'
+      repo = Repository.new(repo_path)
+      client = Client.new(repo)
+      client.create_status(params)
     end
 
     def determine_state(state, exit_status)
       if state
         return state.downcase if ALLOWED_STATUS.include?(state.downcase)
         logger.error "state: #{state} is invalid. allowed #{ALLOWED_STATUS}"
-        fail ::GithubStatusNotifier::Error
+        fail Error
       elsif exit_status
         return SUCCESS if exit_status.to_i == 0
         return FAILURE
       else
         logger.error 'require state or exit_state'
-        fail ::GithubStatusNotifier::Error
+        fail Error
       end
     end
 
