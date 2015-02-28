@@ -23,6 +23,16 @@ module GithubStatusNotifier
       logger.error e.backtrace
     end
 
+    def decide_target_url(url)
+      url || env_target_url
+    end
+
+    def env_target_url
+      if ENV['TARGET_URL']
+        ENV['TARGET_URL']
+      end
+    end
+
     def decide_context(text)
       text || CONTEXT
     end
