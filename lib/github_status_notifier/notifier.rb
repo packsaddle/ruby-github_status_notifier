@@ -8,23 +8,19 @@ module GithubStatusNotifier
 
     def notify(params)
       state = determine_state(params[:state], params[:exit_status])
+      repo_path = '.'
+      repo = Repository.new(repo_path)
+      client = Client.new(repo)
       pass_params = {
         target_url: params[:target_url],
         description: params[:description],
         context: params[:context]
       }
-      deliver_notification(pass_params.merge(state: state))
+      client.create_status(state, pass_params)
     rescue StandardError => e
       logger.error e.message
       logger.error e.backtrace
-      deliver_notification(pass_params.merge(state: ERROR))
-    end
-
-    def deliver_notification(params)
-      repo_path = '.'
-      repo = Repository.new(repo_path)
-      client = Client.new(repo)
-      client.create_status(params)
+      client.create_status(ERROR, pass_params)
     end
 
     def determine_state(state, exit_status)
