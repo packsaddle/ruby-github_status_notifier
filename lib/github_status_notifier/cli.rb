@@ -24,15 +24,12 @@ module GithubStatusNotifier
       elsif options[:verbose]
         logger.level = Logger::INFO
       end
+      logger.debug(options.inspect)
       if options[:keep_exit_status] && !options[:exit_status]
         logger.error 'keep-exit-status requires exit-status'
         abort
       end
 
-      logger.debug 'debug!'
-      logger.info 'info!'
-      logger.warn 'warn!'
-      logger.error 'error!'
       if options[:keep_exit_status]
         exit options[:exit_status]
       end
