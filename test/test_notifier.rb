@@ -20,12 +20,12 @@ module GithubStatusNotifier
 
       test 'valid state' do
         assert do
-          @notifier.decide_state('success', nil) == 'success'
+          @notifier.decide_state('success', nil) == Notifier::SUCCESS
         end
       end
       test 'state case insensitive' do
         assert do
-          @notifier.decide_state('fAiluRe', nil) == 'failure'
+          @notifier.decide_state('fAiluRe', nil) == Notifier::FAILURE
         end
       end
     end
