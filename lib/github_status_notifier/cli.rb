@@ -42,8 +42,7 @@ module GithubStatusNotifier
         context: options[:context]
       }
 
-      notifier = Notifier.new
-      notifier.notify(params)
+      Notifier.new.notify(params)
 
       if options[:keep_exit_status]
         exit options[:exit_status]
