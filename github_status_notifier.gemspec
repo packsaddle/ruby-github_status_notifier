@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ['sanemat']
   spec.email         = ['o.gata.ken@gmail.com']
 
-  spec.summary       = 'TODO: Write a short summary, because Rubygems requires one.'
-  spec.description   = 'TODO: Write a longer description or delete this line.'
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = 'Notify to GitHub status.'
+  spec.description   = 'Easy to handle GitHub status with exit status. Like TravisCI\'s build status.'
+  spec.homepage      = 'https://github.com/packsaddle/ruby-github_status_notifier'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
