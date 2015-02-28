@@ -20,7 +20,11 @@ module GithubStatusNotifier
       deliver_notification(pass_params.merge(state: ERROR))
     end
 
-    def deliver_notification(_params)
+    def deliver_notification(params)
+      repo_path = '.'
+      repo = ::Saddler::Reporter::Support::Git::Repository.new(repo_path)
+      client = Client.new(repo)
+      client.create_status(params)
     end
 
     def determine_state(state, exit_status)
