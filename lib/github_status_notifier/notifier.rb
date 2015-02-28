@@ -32,7 +32,17 @@ module GithubStatusNotifier
         ENV['TARGET_URL']
       elsif ENV['TRAVIS']
         build_travis_target_url
+      elsif ENV['CIRCLECI']
+        build_circle_target_url
       end
+    end
+
+    def build_circle_target_url
+      host = ENV['CIRCLE_HOST'] || 'circleci.com'
+      link = ENV['CIRCLE_LINK'] || 'gh'
+      slug = ENV['CIRCLE_PROJECT_USERNAME'] + '/' + ENV['CIRCLE_PROJECT_REPONAME']
+      job_id = ENV['CIRCLE_BUILD_NUM']
+      "https://#{host}/#{link}/#{slug}/#{job_id}"
     end
 
     def build_travis_target_url
