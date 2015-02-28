@@ -6,6 +6,9 @@ module GithubStatusNotifier
     end
 
     sub_test_case '#decide_state' do
+      success_exit_status = 0
+      failure_exit_status = 1
+
       test 'not state nor exit-status' do
         assert_raise(ArgumentError) do
           @notifier.decide_state(nil, nil)
@@ -30,17 +33,17 @@ module GithubStatusNotifier
       end
       test 'exit status success' do
         assert do
-          @notifier.decide_state(nil, 0) == Notifier::SUCCESS
+          @notifier.decide_state(nil, success_exit_status) == Notifier::SUCCESS
         end
       end
       test 'exit status failure' do
         assert do
-          @notifier.decide_state(nil, 1) == Notifier::FAILURE
+          @notifier.decide_state(nil, failure_exit_status) == Notifier::FAILURE
         end
       end
       test 'state over exit status' do
         assert do
-          @notifier.decide_state('error', 0) == Notifier::ERROR
+          @notifier.decide_state('error', success_exit_status) == Notifier::ERROR
         end
       end
     end
