@@ -15,6 +15,8 @@ $ SOME_YOUR_COMMAND
 $ github-status-notifier notify --exit-status $?
 ```
 
+![GitHub Status](https://cloud.githubusercontent.com/assets/75448/6426125/d4bd4bb8-bf8c-11e4-829e-79b02bb7d6f2.png)
+
 ## Commands
 
 ```
