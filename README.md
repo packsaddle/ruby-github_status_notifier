@@ -74,7 +74,9 @@ Or install it yourself as:
 
 ## Setting
 
-require `GITHUB_ACCESS_TOKEN`
+require setting `GITHUB_ACCESS_TOKEN` to your environment variable.
+
+
 
 ## Development
 
