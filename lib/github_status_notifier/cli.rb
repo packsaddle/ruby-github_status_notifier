@@ -18,7 +18,7 @@ module GithubStatusNotifier
     option :keep_exit_status, type: :boolean, default: false
     option :debug, type: :boolean, default: false
     option :verbose, type: :boolean, default: false
-    option :state, type: :string
+    option :state, type: :string, enum: %w[pending success error failure]
     option :target_url, type: :string
     option :description, type: :string
     option :context, type: :string
