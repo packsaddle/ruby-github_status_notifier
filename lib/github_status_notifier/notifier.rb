@@ -13,7 +13,7 @@ module GithubStatusNotifier
       repo = Repository.new(repo_path)
       client = Client.new(repo)
       pass_params = {
-        target_url: params[:target_url],
+        target_url: decide_target_url(params[:target_url]),
         description: params[:description],
         context: decide_context(params[:context])
       }
@@ -21,6 +21,35 @@ module GithubStatusNotifier
     rescue StandardError => e
       logger.error e.message
       logger.error e.backtrace
+    end
+
+    def decide_target_url(url)
+      url || env_target_url
+    end
+
+    def env_target_url
+      if ENV['TARGET_URL']
+        ENV['TARGET_URL']
+      elsif ENV['TRAVIS']
+        build_travis_target_url
+      elsif ENV['CIRCLECI']
+        build_circle_target_url
+      end
+    end
+
+    def build_circle_target_url
+      host = ENV['CIRCLE_HOST'] || 'circleci.com'
+      link = ENV['CIRCLE_LINK'] || 'gh'
+      slug = ENV['CIRCLE_PROJECT_USERNAME'] + '/' + ENV['CIRCLE_PROJECT_REPONAME']
+      job_id = ENV['CIRCLE_BUILD_NUM']
+      "https://#{host}/#{link}/#{slug}/#{job_id}"
+    end
+
+    def build_travis_target_url
+      host = ENV['TRAVIS_HOST'] || 'travis-ci.org'
+      slug = ENV['TRAVIS_REPO_SLUG']
+      job_id = ENV['TRAVIS_JOB_ID']
+      "https://#{host}/#{slug}/jobs/#{job_id}"
     end
 
     def decide_context(text)
