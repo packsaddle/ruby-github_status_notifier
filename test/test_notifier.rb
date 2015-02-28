@@ -38,6 +38,11 @@ module GithubStatusNotifier
           @notifier.decide_state(nil, 1) == Notifier::FAILURE
         end
       end
+      test 'state over exit status' do
+        assert do
+          @notifier.decide_state('error', 0) == Notifier::ERROR
+        end
+      end
     end
     sub_test_case '#decide_context' do
       test 'no context' do
