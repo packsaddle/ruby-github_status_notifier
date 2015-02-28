@@ -13,7 +13,7 @@ module GithubStatusNotifier
       repo = Repository.new(repo_path)
       client = Client.new(repo)
       pass_params = {
-        target_url: params[:target_url],
+        target_url: decide_target_url(params[:target_url]),
         description: params[:description],
         context: decide_context(params[:context])
       }
