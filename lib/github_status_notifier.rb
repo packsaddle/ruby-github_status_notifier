@@ -2,13 +2,16 @@ require 'github_status_notifier/version'
 require 'logger'
 
 module GithubStatusNotifier
+  def self.default_logger
+    logger = Logger.new(STDERR)
+    logger.progname = 'GithubStatusNotifier'
+    logger.level = Logger::WARN
+    logger
+  end
+
   def self.logger
     return @logger if @logger
-
-    @logger = Logger.new(STDERR)
-    @logger.progname = 'GithubStatusNotifier'
-    @logger.level = Logger::WARN
-    @logger
+    @logger = default_logger
   end
 
   class << self
