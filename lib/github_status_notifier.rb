@@ -1,5 +1,6 @@
-require 'github_status_notifier/version'
 require 'logger'
+require 'github_status_notifier/version'
+require 'github_status_notifier/notifier'
 
 module GithubStatusNotifier
   class Error < StandardError; end
