@@ -26,14 +26,12 @@ module GithubStatusNotifier
     def determine_state(state, exit_status)
       if state
         return state.downcase if ALLOWED_STATUS.include?(state.downcase)
-        logger.error "state: #{state} is invalid. allowed #{ALLOWED_STATUS}"
-        fail Error
+        fail Error("state: #{state} is invalid. allowed #{ALLOWED_STATUS}")
       elsif exit_status
         return SUCCESS if exit_status.to_i == 0
         return FAILURE
       else
-        logger.error 'require state or exit_state'
-        fail Error
+        fail Error('require state or exit_state')
       end
     end
 
