@@ -35,7 +35,7 @@ module GithubStatusNotifier
         return SUCCESS if exit_status.to_i == 0
         return FAILURE
       else
-        fail Error('require state or exit_state')
+        fail Error('require state or exit-state')
       end
     end
 
