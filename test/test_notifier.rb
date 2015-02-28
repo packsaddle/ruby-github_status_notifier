@@ -17,6 +17,17 @@ module GithubStatusNotifier
           @notifier.decide_state('invalid', nil)
         end
       end
+
+      test 'valid state' do
+        assert do
+          @notifier.decide_state('success', nil) == 'success'
+        end
+      end
+      test 'state case insensitive' do
+        assert do
+          @notifier.decide_state('fAiluRe', nil) == 'failure'
+        end
+      end
     end
   end
 end
