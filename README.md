@@ -72,6 +72,10 @@ Or install it yourself as:
 
     $ gem install github_status_notifier
 
+## Setting
+
+require `GITHUB_ACCESS_TOKEN`
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment. Run `bundle exec github_status_notifier` to use the code located in this directory, ignoring other installed copies of this gem.
