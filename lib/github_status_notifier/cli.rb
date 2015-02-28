@@ -18,6 +18,10 @@ module GithubStatusNotifier
     option :keep_exit_status, type: :boolean, default: false
     option :debug, type: :boolean, default: false
     option :verbose, type: :boolean, default: false
+    option :state, type: :string
+    option :target_url, type: :string
+    option :description, type: :string
+    option :context, type: :string
     def notify
       if options[:debug]
         logger.level = Logger::DEBUG
@@ -30,6 +34,16 @@ module GithubStatusNotifier
         abort
       end
 
+      params = {
+        state: options[:state],
+        exit_status: options[:exit_status],
+        target_url: options[:target_url],
+        description: options[:description],
+        context: options[:context]
+      }
+
+      notifier_notify(params)
+
       if options[:keep_exit_status]
         exit options[:exit_status]
       end
@@ -38,6 +52,16 @@ module GithubStatusNotifier
     no_commands do
       def logger
         ::GithubStatusNotifier.logger
+      end
+
+      PENDING = 'pending'
+      SUCCESS = 'success'
+      ERROR = 'error'
+      FAILURE = 'failure'
+      def notifier_notify(params)
+        if params[:state]
+          state = params[:state]
+        end
       end
     end
   end
