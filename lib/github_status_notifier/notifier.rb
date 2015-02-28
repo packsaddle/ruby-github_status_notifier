@@ -14,13 +14,17 @@ module GithubStatusNotifier
       pass_params = {
         target_url: params[:target_url],
         description: params[:description],
-        context: params[:context]
+        context: decide_context(params[:context])
       }
       client.create_status(state, pass_params)
     rescue StandardError => e
       logger.error e.message
       logger.error e.backtrace
       client.create_status(ERROR, pass_params)
+    end
+
+    def decide_context(text)
+      text || 'github_status_notifier'
     end
 
     def decide_state(state, exit_status)
