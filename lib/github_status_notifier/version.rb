@@ -1,3 +1,3 @@
 module GithubStatusNotifier
-  VERSION = '0.0.2-beta'
+  VERSION = '0.1.0'
 end
