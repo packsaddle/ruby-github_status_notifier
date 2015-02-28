@@ -29,12 +29,12 @@ module GithubStatusNotifier
     def decide_state(state, exit_status)
       if state
         return state.downcase if ALLOWED_STATUS.include?(state.downcase)
-        fail Error, "state: #{state} is invalid. allowed #{ALLOWED_STATUS}"
+        fail InvalidStateError, "state: #{state} is invalid. allowed #{ALLOWED_STATUS}"
       elsif exit_status
         return SUCCESS if exit_status.to_i == 0
         return FAILURE
       else
-        fail Error, 'require state or exit-state'
+        fail ArgumentError, 'require state or exit-state'
       end
     end
 
