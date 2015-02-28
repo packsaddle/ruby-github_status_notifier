@@ -1,7 +1,9 @@
 require 'logger'
 require 'saddler/reporter/github'
-require 'github_status_notifier/version'
+require 'github_status_notifier/client'
 require 'github_status_notifier/notifier'
+require 'github_status_notifier/repository'
+require 'github_status_notifier/version'
 
 module GithubStatusNotifier
   class Error < StandardError; end
