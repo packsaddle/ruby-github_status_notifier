@@ -19,8 +19,11 @@ module GithubStatusNotifier
       }
       client.create_status(state, pass_params)
     rescue StandardError => e
-      logger.error e.message
-      logger.error e.backtrace
+      logger.error 'state:'
+      logger.error state
+      logger.error 'pass_params:'
+      logger.error pass_params
+      raise e
     end
 
     def decide_target_url(url)
