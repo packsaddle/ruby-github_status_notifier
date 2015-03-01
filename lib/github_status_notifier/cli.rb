@@ -21,7 +21,7 @@ module GithubStatusNotifier
     option :state, type: :string, enum: %w(pending success error failure)
     option :target_url, type: :string
     option :description, type: :string
-    option :context, type: :string
+    option :context, type: :string, default: Notifier::CONTEXT
     def notify
       if options[:debug]
         logger.level = Logger::DEBUG
