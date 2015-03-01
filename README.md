@@ -22,7 +22,7 @@ $ github-status-notifier notify --exit-status $?
 ```
 Commands:
   github-status-notifier help [COMMAND]  # Describe available commands or one specific command
-  github-status-notifier notify          # Notify current status to GitHub status
+  github-status-notifier notify          # Notify current state to GitHub status
   github-status-notifier version         # Show the GithubStatusNotifier version
 
 Usage:
@@ -38,8 +38,9 @@ Options:
   [--target-url=TARGET_URL]
   [--description=DESCRIPTION]
   [--context=CONTEXT]
+                                                 # Default: github_status_notifier
 
-Notify current status to GitHub status
+Notify current state to GitHub status
 ```
 
 see also: [Statuses | GitHub API](https://developer.github.com/v3/repos/statuses/)

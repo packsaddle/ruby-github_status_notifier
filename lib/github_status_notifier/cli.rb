@@ -13,7 +13,7 @@ module GithubStatusNotifier
       puts "GithubStatusNotifier version #{::GithubStatusNotifier::VERSION}"
     end
 
-    desc 'notify', 'Notify current status to GitHub status'
+    desc 'notify', 'Notify current state to GitHub status'
     option :exit_status, type: :numeric
     option :keep_exit_status, type: :boolean, default: false
     option :debug, type: :boolean, default: false
