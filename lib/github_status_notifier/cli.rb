@@ -30,8 +30,7 @@ module GithubStatusNotifier
       end
       logger.debug(options.inspect)
       if options[:keep_exit_status] && !options[:exit_status]
-        logger.error 'keep-exit-status requires exit-status'
-        abort
+        fail ArgumentError, 'keep-exit-status requires exit-status'
       end
 
       params = {
@@ -47,6 +46,10 @@ module GithubStatusNotifier
       if options[:keep_exit_status]
         exit options[:exit_status]
       end
+    rescue StandardError => e
+      logger.error 'options:'
+      logger.error options
+      raise e
     end
 
     no_commands do
