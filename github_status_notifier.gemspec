@@ -13,6 +13,7 @@ Gem::Specification.new do |spec|
   spec.description   = 'Easy to handle GitHub status with exit status. Like TravisCI\'s build status.'
   spec.homepage      = 'https://github.com/packsaddle/ruby-github_status_notifier'
   spec.license       = 'MIT'
+  spec.required_ruby_version = '>= 2.0'
 
   spec.files         = \
     `git ls-files -z`
